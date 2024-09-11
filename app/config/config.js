@@ -9,7 +9,7 @@ export const EMAIL_PORT = 25
 export const EMAIL_SECURITY = false
 export const EMAIL_USER = "e1906862bde9c1"
 export const EMAIL_PASS = "04cbfbb703d740"
-export const EMAIL_UNAUTH = false
+export const EMAIL_UNAUTH = true
 
 // Cacheing
 export const WEB_CACHE = false
