@@ -1,4 +1,5 @@
 import {response} from "express";
+import UserModel from "../model/UserModel.js";
 
 /**
  * View user profile
@@ -8,7 +9,15 @@ import {response} from "express";
  * @constructor
  */
 export const ProfileDetails = async function (req, res) {
-    return res.json({status: 200});
+    try{
+        let user_id = req.headers["user_id"];
+        let data = await UserModel.findById({"_id": user_id})
+        return res.status(200).json({message: "User profile", data:data});
+    }
+
+    catch (e) {
+        return res.status(401).json({message: "Can not get user profile", "Error":e.toString()});
+    }
 }
 
 /**

@@ -6,6 +6,7 @@ import * as TaskController from "../app/controller/TaskController.js";
 import * as SignupController from "../app/controller/SignupController.js";
 import * as LoginController from "../app/controller/LoginController.js";
 import * as ForgetPasswordController from "../app/controller/ForgetPasswordController.js";
+import AuthMiddleware from "../app/middleware/AuthMiddleware.js";
 
 //Task routes
 router.post("/create-task", TaskController.CreateTask);
@@ -21,8 +22,8 @@ router.post("/registration", SignupController.Registration);
 router.post("/login", LoginController.Signin);
 
 //User routes
-router.get("/profile-details", UserController.ProfileDetails)
-router.put("/update-profile", UserController.UpdateProfile)
+router.get("/profile-details", AuthMiddleware, UserController.ProfileDetails)
+router.put("/update-profile", AuthMiddleware, UserController.UpdateProfile)
 
 //Forget Password
 router.post("/email-verify", ForgetPasswordController.VerifyEmail)
