@@ -28,6 +28,15 @@ export const ProfileDetails = async function (req, res) {
  * @constructor
  */
 export const UpdateProfile = async function (req, res) {
-    return res.json({status: 200});
+   try{
+       let req_body = req.body;
+       let user_id = req.headers["user_id"]
+       let data = await UserModel.updateOne({"_id": user_id}, req_body)
+
+       return res.status(200).json({message: "User profile updated"});
+   }
+   catch (e) {
+       return res.json({message: "Fail to user profile update", "Error":e.toString()});
+   }
 }
 
